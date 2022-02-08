@@ -1,0 +1,12 @@
+server:
+  port: 10086
+spring:
+  application:
+    name: itcast-eureka # 将来会作为微服务的名称注册到eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10087/eureka
+  server:
+    eviction-interval-timer-in-ms: 5000 # 每隔5秒剔除全部失效服务（90秒内未响应服务）
+    enable-self-preservation: false # 取消自我保护状态

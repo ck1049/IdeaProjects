@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- vue对象的html模板 -->
+<div id="app">
+    <input type="text" v-model="search">
+    <hr/>
+    <div>{{birth()}}</div>
+    <div>{{birth1}}</div>
+    <hr/>
+    <input type="text" v-model="store">
+    <input type="button" v-bind:class="{active: store > 0}" value="加入购物车">
+    <hr/>
+    <input type="button" v-bind:value="value" @click="random=Math.random()">{{random}}
+    <span v-if="random > 0.75">你看到我了说明我大于0.75</span>
+    <span v-else-if="random > 0.5">你看到我了说明我大于0.5小于等于0.75</span>
+    <span v-else-if="random > 0.25">你看到我了说明我大于0.25小于等于0.5</span>
+    <span v-else>你看到我了说明我大于等于0小于等于0.25</span>
+    <hr/>
+    <input type="button" value="点我呀" @click="show=!show">
+    <span v-if="show">你看到我了说明我是true, if</span>
+    <span v-show="show">你看到我了说明我是true, show</span>
+    <hr/>
+    <ul>
+        <li v-for="(value, key, index) in user" :key="index">{{index + 1}}.{{key}}-{{value}}</li>
+    </ul>
+    <hr/>
+    <ul>
+        <li v-if="user.age > 17" v-for="(user, index) in users" :key="index">{{index + 1}}.{{user.name}}-{{user.age}}</li>
+    </ul>
+    <hr/>
+    <input type="checkbox" value="ios" v-model="language">ios
+    <input type="checkbox" value="java" v-model="language">java
+    <input type="checkbox" value="php" v-model="language">php
+    <br/><hr/>
+    您选择了：{{language}}
+
+    <!--  双向绑定，v-model: 数据模型  -->
+    <input type="text" v-model="num" @keyup.enter="submit" @keyup.alt.67="incr">
+    <!--  v-on:事件名=js表达式  -->
+    <input type="button" value="点我呀" v-on:click="incr" @contextmenu.prevent="menu">
+    <!--  花括号：js表达式  -->
+    <h1>大家好，我是<span v-html="name">张学友</span>，有<span v-text="num">100</span>位妹子迷恋我</h1>
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    // 初始化一个vue实例
+    const app = new Vue({
+        el: "#app", // element选择器
+        data: { // 定义数据模型
+            name: "<span style='color:red'>刘德华</span>",
+            num: "100",
+            language: [],
+            users: [
+                {name: "古力娜扎", age: 17},
+                {name: "刘亦菲", age: 18}
+            ],
+            user: {name: "刘亦菲", age: 18},
+            show: true,
+            random: 0,
+            value: "点我呀",
+            store: 0,
+            birthday: 1529032123201,
+            search: ""
+        },
+        methods: {
+            incr() {
+                console.log(this);
+                this.num++;
+            },
+            menu() {
+                //ev.preventDefault();
+                this.num = 0;
+            },
+            submit(){
+                console.log("你已经提交了");
+            },
+            birth(){
+                const date = new Date(this.birthday);
+                return date.getFullYear() + "年" + date.getMonth() + "月" + date.getDay() + "日";
+            }
+        },
+        computed: { // 计算属性，里面也是定义方法，但是这些方法必须有返回值，计算属性可以像数据模型一样使用
+            birth1(){
+                const date = new Date();
+                return date.getFullYear() + "年" + date.getMonth() + "月" + date.getDay() + "日";
+            }
+        },
+        watch: { //监听
+            search(val1, val2){
+                console.log(val1,val2);
+            }
+        },
+        created() {
+            // ajax
+            this.num = 10000;
+        }
+
+    });
+</script>
+</html>

@@ -1,0 +1,20 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3308/test?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  application:
+    name: service-provider # 将来会作为微服务的名称
+mybatis:
+  type-aliases-package: cn.itcast.service.pojo
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+    register-with-eureka: true # 服务提供方启动时，会检测是否注册到eureka
+  instance:
+    lease-expiration-duration-in-seconds: 10 # 10秒即过期
+    lease-renewal-interval-in-seconds: 5 # 5秒心跳一次

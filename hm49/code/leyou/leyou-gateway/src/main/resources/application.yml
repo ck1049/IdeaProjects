@@ -1,0 +1,35 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: leyou-gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            # 允许携带认证信息
+            # 允许跨域的源(网站域名/ip)，设置*为全部
+            # 允许跨域请求里的head字段，设置*为全部
+            # 允许跨域的method， 默认为GET和OPTIONS，设置*为全部
+            # 跨域允许的有效期
+            allow-credentials: true
+            allowed-originPatterns: "http://manage.leyou.com"
+            allowed-headers: "*"
+            allowed-methods: "*"
+            max-age: 3600
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: item-service
+          uri: lb://item-service
+          predicates:
+            - Path=/api/item/**
+          filters:
+            - StripPrefix=2
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+    registry-fetch-interval-seconds: 5

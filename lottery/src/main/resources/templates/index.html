@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" crossorigin="anonymous">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+        .lightgreen{
+            color: lightgreen;
+        }
+        .lightblue{
+            color: lightblue;
+        }
+        .pt15{
+            font-size: 15px;
+           }
+        .pageSpan{
+            color: blue;
+            background: white;
+            border: yellow solid 1px;
+            border-radius: 5%;
+        }
+    </style>
+</head>
+<body class="container" style="background: lightblue">
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="../../js/jquery.min.js" crossorigin="anonymous"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="../../js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="../../js/common.js"></script>
+
+<div class="col-md-3">
+
+</div>
+<div class="col-md-6">
+    <table class="table table-condensed">
+        <!-- On rows -->
+        <tr class="px15">
+            <th class="lightgreen">期号</th>
+            <th class="red">红球</th>
+            <th class="red">红球</th>
+            <th class="red">红球</th>
+            <th class="red">红球</th>
+            <th class="red">红球</th>
+            <th class="blue">蓝球</th>
+            <th class="blue">蓝球</th>
+            <th class="lightgreen">开奖日期</th>
+        </tr>
+        <div th:each="lotto,iterStat : ${pageInfo.list}">
+            <tr class="active" th:if="${iterStat.index % 5 == 0}">
+                <td th:text="${lotto.issueNumber}">00001</td>
+                <td th:text="${lotto.red1}">01</td>
+                <td th:text="${lotto.red2}">02</td>
+                <td th:text="${lotto.red3}">03</td>
+                <td th:text="${lotto.red4}">04</td>
+                <td th:text="${lotto.red5}">05</td>
+                <td th:text="${lotto.blue1}">06</td>
+                <td th:text="${lotto.blue2}">07</td>
+                <td th:text="${lotto.awardDate}"></td>
+            </tr>
+            <tr class="success" th:if="${iterStat.index % 5 == 1}">
+                <td th:text="${lotto.issueNumber}">00001</td>
+                <td th:text="${lotto.red1}">01</td>
+                <td th:text="${lotto.red2}">02</td>
+                <td th:text="${lotto.red3}">03</td>
+                <td th:text="${lotto.red4}">04</td>
+                <td th:text="${lotto.red5}">05</td>
+                <td th:text="${lotto.blue1}">06</td>
+                <td th:text="${lotto.blue2}">07</td>
+                <td th:text="${lotto.awardDate}"></td>
+            </tr>
+            <tr class="warning" th:if="${iterStat.index % 5 == 2}">
+                <td th:text="${lotto.issueNumber}">00001</td>
+                <td th:text="${lotto.red1}">01</td>
+                <td th:text="${lotto.red2}">02</td>
+                <td th:text="${lotto.red3}">03</td>
+                <td th:text="${lotto.red4}">04</td>
+                <td th:text="${lotto.red5}">05</td>
+                <td th:text="${lotto.blue1}">06</td>
+                <td th:text="${lotto.blue2}">07</td>
+                <td th:text="${lotto.awardDate}"></td>
+            </tr>
+            <tr class="danger" th:if="${iterStat.index % 5 == 3}">
+                <td th:text="${lotto.issueNumber}">00001</td>
+                <td th:text="${lotto.red1}">01</td>
+                <td th:text="${lotto.red2}">02</td>
+                <td th:text="${lotto.red3}">03</td>
+                <td th:text="${lotto.red4}">04</td>
+                <td th:text="${lotto.red5}">05</td>
+                <td th:text="${lotto.blue1}">06</td>
+                <td th:text="${lotto.blue2}">07</td>
+                <td th:text="${lotto.awardDate}"></td>
+            </tr>
+            <tr class="info" th:if="${iterStat.index % 5 == 4}">
+                <td th:text="${lotto.issueNumber}">00001</td>
+                <td th:text="${lotto.red1}">01</td>
+                <td th:text="${lotto.red2}">02</td>
+                <td th:text="${lotto.red3}">03</td>
+                <td th:text="${lotto.red4}">04</td>
+                <td th:text="${lotto.red5}">05</td>
+                <td th:text="${lotto.blue1}">06</td>
+                <td th:text="${lotto.blue2}">07</td>
+                <td th:text="${lotto.awardDate}"></td>
+            </tr>
+        </div>
+
+    </table>
+
+    <div>
+        <ul class="pagination" th:if="${pageInfo.pageNum<=3}">
+            <li>
+                <a th:href="@{/lotto/index/1}" aria-label="Previous">首页</a>
+            </li>
+            <li th:if="${pageInfo.pageNum>1}"><a th:href="@{'/lotto/index/'+${pageInfo.pageNum-1}}">上一页</a></li>
+            <li th:if="${pageInfo.pageNum==1}"><a th:href="@{/lotto/index/1}">上一页</a></li>
+            <li><a th:href="@{/lotto/index/1}">1</a></li>
+            <li><a th:href="@{/lotto/index/2}">2</a></li>
+            <li><a th:href="@{/lotto/index/3}">3</a></li>
+            <li><a th:href="@{/lotto/index/4}">4</a></li>
+            <li><a th:href="@{/lotto/index/5}">5</a></li>
+            <li th:if="${pageInfo.pageNum<pageInfo.pages}"><a th:href="@{'/lotto/index/'+${pageInfo.pageNum+1}}">下一页</a></li>
+            <li th:if="${pageInfo.pageNum==pageInfo.pages}"><a th:href="@{'/lotto/index/'+${pageInfo.pages}}">下一页</a></li>
+            <li>
+                <a th:href="@{'/lotto/index/'+${pageInfo.pages}}">尾页</a>
+            </li>
+        </ul>
+        <ul class="pagination" th:if="${pageInfo.pageNum>3 && pageInfo.pageNum<=pageInfo.pages-2}">
+            <li>
+                <a th:href="@{/lotto/index/1}" aria-label="Previous">首页</a>
+            </li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pageNum-1}}">上一页</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pageNum-2}}" th:text="${pageInfo.pageNum-2}">1</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pageNum-1}}" th:text="${pageInfo.pageNum-1}">2</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pageNum}}" th:text="${pageInfo.pageNum}">3</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pageNum+1}}" th:text="${pageInfo.pageNum+1}">4</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pageNum+2}}" th:text="${pageInfo.pageNum+2}">5</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pageNum+1}}">下一页</a></li>
+            <li>
+                <a th:href="@{'/lotto/index/'+${pageInfo.pages}}">尾页</a>
+            </li>
+        </ul>
+        <ul class="pagination" th:if="${pageInfo.pageNum>pageInfo.pages-2}">
+            <li>
+                <a th:href="@{/lotto/index/1}" aria-label="Previous">首页</a>
+            </li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pageNum-1}}">上一页</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pages-4}}" th:text="${pageInfo.pages-4}">1</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pages-3}}" th:text="${pageInfo.pages-3}">2</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pages-2}}" th:text="${pageInfo.pages-2}">3</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pages-1}}" th:text="${pageInfo.pages-1}">4</a></li>
+            <li><a th:href="@{'/lotto/index/'+${pageInfo.pages}}" th:text="${pageInfo.pages}">5</a></li>
+            <li th:if="${pageInfo.pageNum<pageInfo.pages}"><a th:href="@{'/lotto/index/'+${pageInfo.pageNum+1}}">下一页</a></li>
+            <li th:if="${pageInfo.pageNum==pageInfo.pages}"><a th:href="@{'/lotto/index/'+${pageInfo.pages}}">下一页</a></li>
+            <li>
+                <a th:href="@{'/lotto/index/'+${pageInfo.pages}}">尾页</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="col-md-3">
+
+</div>
+
+</body>
+<script>
+    $(function () {
+        var i = 0;
+        var interval = setInterval(function () {
+            if (i >= 3){
+                i = 0;
+            }
+            $("body").css("background", randomColor());
+            i++;
+        },30000);
+
+    });
+
+</script>
+</html>

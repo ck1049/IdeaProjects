@@ -1,0 +1,6 @@
+spring:
+  elasticsearch:
+    uris: "https://192.168.35.129:9200"
+    socket-timeout: "10s"
+    username: "leyou"
+    password: "123456"

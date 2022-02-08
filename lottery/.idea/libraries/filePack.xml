@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="filePack">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/resources/filePack.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
