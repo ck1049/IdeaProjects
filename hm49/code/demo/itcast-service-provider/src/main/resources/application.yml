@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8081
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -8,6 +8,9 @@ spring:
     password: 123456
   application:
     name: service-provider # 将来会作为微服务的名称
+  cloud:
+    loadbalancer:
+      enabled: true
 mybatis:
   type-aliases-package: cn.itcast.service.pojo
 eureka:

@@ -10,10 +10,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-//@SpringBootApplication
 //@EnableDiscoveryClient
-@EnableCircuitBreaker // 开启熔断
-@SpringCloudApplication // 组合注解，相当于@SpringBootApplication @EnableDiscoveryClient @EnableCircuitBreaker（2020之后版本springcloud不包含该注解）
+//@EnableCircuitBreaker // 开启熔断
+//@SpringCloudApplication // 组合注解，相当于@SpringBootApplication @EnableDiscoveryClient @EnableCircuitBreaker（2020之后版本springcloud不包含该注解）
+@SpringBootApplication
 @EnableFeignClients // 启用feign组件
 public class ItcastServiceConsumerApplication {
 
