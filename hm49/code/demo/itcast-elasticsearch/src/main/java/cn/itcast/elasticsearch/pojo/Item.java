@@ -7,7 +7,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.Setting;
 
 @Document(indexName = "item")
-@Setting(indexStoreType = "docs", shards = 1, replicas = 0)
+//@Setting(indexStoreType = "docs", shards = 1, replicas = 0)
 public class Item {
     @Id
     Long id;
@@ -21,6 +21,18 @@ public class Item {
     Double price; // 价格
     @Field(type = FieldType.Keyword, index = false)
     String images; // 图片地址
+
+    public Item() {
+    }
+
+    public Item(Long id, String title, String category, String brand, Double price, String images) {
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.brand = brand;
+        this.price = price;
+        this.images = images;
+    }
 
     public Long getId() {
         return id;
@@ -68,5 +80,17 @@ public class Item {
 
     public void setImages(String images) {
         this.images = images;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", brand='" + brand + '\'' +
+                ", price=" + price +
+                ", images='" + images + '\'' +
+                '}';
     }
 }
