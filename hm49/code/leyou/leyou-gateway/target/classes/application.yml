@@ -14,7 +14,7 @@ spring:
             # 允许跨域的method， 默认为GET和OPTIONS，设置*为全部
             # 跨域允许的有效期
             allow-credentials: true
-            allowed-originPatterns: "http://manage.leyou.com"
+            allowed-originPatterns: "http://manage.leyou.com,http://www.leyou.com"
             allowed-headers: "*"
             allowed-methods: "*"
             max-age: 3600
@@ -26,6 +26,12 @@ spring:
           uri: lb://item-service
           predicates:
             - Path=/api/item/**
+          filters:
+            - StripPrefix=2
+        - id: search-service
+          uri: lb://search-service
+          predicates:
+            - Path=/api/search/**
           filters:
             - StripPrefix=2
 eureka:
