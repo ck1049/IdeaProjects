@@ -9,8 +9,10 @@
         <module name="leyou-registry" />
         <module name="leyou-search" />
         <module name="leyou-item-interface" />
+        <module name="leyou-sms" />
         <module name="leyou-upload" />
         <module name="leyou-common" />
+        <module name="leyou-goods" />
         <module name="leyou-gateway" />
         <module name="leyou-item-service" />
       </profile>
@@ -20,11 +22,13 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="leyou-common" options="-parameters" />
       <module name="leyou-gateway" options="-parameters" />
+      <module name="leyou-goods" options="-parameters" />
       <module name="leyou-item" options="-parameters" />
       <module name="leyou-item-interface" options="-parameters" />
       <module name="leyou-item-service" options="-parameters" />
       <module name="leyou-registry" options="-parameters" />
       <module name="leyou-search" options="-parameters" />
+      <module name="leyou-sms" options="-parameters" />
       <module name="leyou-upload" options="-parameters" />
     </option>
   </component>

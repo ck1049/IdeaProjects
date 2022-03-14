@@ -7,6 +7,8 @@ import com.leyou.item.bo.SpuBo;
 import com.leyou.item.mapper.*;
 import com.leyou.item.pojo.*;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,9 @@ public class GoodsService {
 
     @Autowired
     private StockMapper stockMapper;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     /**
      * 根据条件分页查询spu
@@ -92,7 +97,8 @@ public class GoodsService {
         spuDetail.setSpuId(spuBo.getId());
         this.spuDetailMapper.insertSelective(spuDetail);
         saveSkuAndStock(spuBo);
-
+        // 发送消息队列
+        sendMessage("insert", spuBo.getId());
     }
 
     /**
@@ -102,6 +108,15 @@ public class GoodsService {
      */
     public SpuDetail querySpuDetailBySpuId( Long spuId) {
         return this.spuDetailMapper.selectByPrimaryKey(spuId);
+    }
+
+    /**
+     * 根据spuId查询spu
+     * @param spuId
+     * @return
+     */
+    public Spu querySpuBySpuId(Long spuId) {
+        return this.spuMapper.selectByPrimaryKey(spuId);
     }
 
     /**
@@ -148,6 +163,17 @@ public class GoodsService {
         spuBo.setSaleable(null);
         this.spuMapper.updateByPrimaryKeySelective(spuBo);
         this.spuDetailMapper.updateByPrimaryKeySelective(spuBo.getSpuDetail());
+        // 发送消息队列
+        sendMessage("update", spuBo.getId());
+    }
+
+    // 删除goods，逻辑删除
+    private void delete(Long id){
+        SpuBo spuBo = new SpuBo();
+        spuBo.setId(id);
+        spuBo.setValid(false);
+        this.spuMapper.updateByPrimaryKeySelective(spuBo);
+        sendMessage("delete", id);
     }
 
     private void saveSkuAndStock(SpuBo spuBo) {
@@ -165,4 +191,14 @@ public class GoodsService {
             this.stockMapper.insertSelective(stock);
         });
     }
+
+    private void sendMessage(String type, Long id){
+        try {
+            // 发送消息
+            this.amqpTemplate.convertAndSend("item." + type, id);
+        } catch (AmqpException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

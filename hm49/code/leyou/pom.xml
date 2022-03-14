@@ -14,6 +14,8 @@
         <module>leyou-common</module>
         <module>leyou-upload</module>
         <module>leyou-search</module>
+        <module>leyou-goods</module>
+        <module>leyou-sms</module>
     </modules>
     <packaging>pom</packaging>
     <name>leyou</name>
@@ -40,6 +42,7 @@
         <fastDFS.client.version>1.27.2</fastDFS.client.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <spring-amqp.version>2.4.2</spring-amqp.version>
     </properties>
 
     <dependencyManagement>
@@ -81,6 +84,12 @@
                 <groupId>com.github.tobato</groupId>
                 <artifactId>fastdfs-client</artifactId>
                 <version>${fastDFS.client.version}</version>
+            </dependency>
+            <!-- amqp启动器 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${spring-amqp.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

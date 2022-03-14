@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="itcast-service-consumer" />
+        <module name="itcasat-sms" />
         <module name="itcast-service-provider" />
         <module name="itcast-user" />
         <module name="itcast-eureka" />
@@ -16,6 +17,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="itcasat-sms" target="8" />
       <module name="itcast-elasticsearch" target="1.8" />
       <module name="itcast-eureka" target="1.8" />
       <module name="itcast-service-consumer" target="1.8" />
@@ -27,6 +29,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="itcasat-sms" options="-parameters" />
       <module name="itcast-elasticsearch" options="-parameters" />
       <module name="itcast-eureka" options="-parameters" />
       <module name="itcast-service-consumer" options="-parameters" />

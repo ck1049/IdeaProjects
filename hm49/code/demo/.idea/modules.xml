@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/demo.iml" filepath="$PROJECT_DIR$/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/itcasat-sms/itcasat-sms.iml" filepath="$PROJECT_DIR$/itcasat-sms/itcasat-sms.iml" />
       <module fileurl="file://$PROJECT_DIR$/itcast-elasticsearch/itcast-elasticsearch.iml" filepath="$PROJECT_DIR$/itcast-elasticsearch/itcast-elasticsearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/itcast-eureka/itcast-eureka.iml" filepath="$PROJECT_DIR$/itcast-eureka/itcast-eureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/itcast-service-consumer/itcast-service-consumer.iml" filepath="$PROJECT_DIR$/itcast-service-consumer/itcast-service-consumer.iml" />

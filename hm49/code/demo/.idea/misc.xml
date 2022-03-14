@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/itcast-eureka/pom.xml" />
         <option value="$PROJECT_DIR$/itcast-zuul/pom.xml" />
         <option value="$PROJECT_DIR$/itcast-elasticsearch/pom.xml" />
+        <option value="$PROJECT_DIR$/itcasat-sms/pom.xml" />
       </list>
     </option>
   </component>

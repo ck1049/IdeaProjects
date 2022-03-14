@@ -80,6 +80,20 @@ public class GoodsController {
     }
 
     /**
+     * 根据spuId查询spu
+     * @param spuId
+     * @return
+     */
+    @GetMapping("spu/{spuId}")
+    public ResponseEntity<Spu> querySpuBySpuId(@PathVariable("spuId") Long spuId){
+        Spu spu = this.goodservice.querySpuBySpuId(spuId);
+        if (spu == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(spu);
+    }
+
+    /**
      * 根据spuId查询sku集合
      * @param spuId
      * @return
