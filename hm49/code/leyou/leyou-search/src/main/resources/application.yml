@@ -1,0 +1,25 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: search-service
+  elasticsearch:
+    uris: "http://192.168.35.129:9200"
+    socket-timeout: "10s"
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    default-property-inclusion: non_null
+  rabbitmq:
+    host: 192.168.35.130
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
