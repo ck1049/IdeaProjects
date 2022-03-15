@@ -3,7 +3,6 @@ package com.leyou.search.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.leyou.common.pojo.PageResult;
 import com.leyou.item.pojo.*;
 import com.leyou.search.client.BrandClient;
 import com.leyou.search.client.CategoryClient;
@@ -24,8 +23,6 @@ import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.AggregationsContainer;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
@@ -34,7 +31,6 @@ import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
