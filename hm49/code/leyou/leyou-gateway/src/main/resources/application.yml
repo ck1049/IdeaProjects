@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: leyou-gateway
+  main:
+    web-application-type: reactive
   cloud:
     gateway:
       globalcors:
@@ -33,15 +35,41 @@ spring:
           predicates:
             - Path=/api/search/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/api/user/**
           filters:
             - StripPrefix=1
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=1
+            - PreserveHostHeader #发送网关原始主机头:否则host会变成主机名加端口号而不是域名
+        - id: cart-service
+          uri: lb://cart-service
+          predicates:
+            - Path=/api/cart/**
+          filters:
+            - StripPrefix=1
+            - PreserveHostHeader
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:10086/eureka
     registry-fetch-interval-seconds: 5
+leyou:
+  jwt:
+    pubKeyPath: D:\\IdeaProjects\\hm49\\tmp\\rsa\\rsa.pub # 公钥地址
+    cookieName: LEYOU_TOEKN
+  filter:
+    allowPaths:
+      - /search
+      - /auth
+      - /user/register
+      - /user/check
+      - /user/code
+      - /item
