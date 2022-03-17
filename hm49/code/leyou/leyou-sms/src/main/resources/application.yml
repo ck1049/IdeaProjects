@@ -2,8 +2,8 @@ server:
   port: 8086
 leyou:
   sms:
-    accessKeyId: xxxxxxxxxx # 你自己的accessKeyId
-    accessKeySecret: xxxxxxxxxxx # 你自己的AccessKeySecret
+    accessKeyId: xxxxx # 你自己的accessKeyId
+    accessKeySecret: xxxxx # 你自己的AccessKeySecret
     signName: 阿里云短信测试 # 签名名称
     verifyCodeTemplate: SMS_154950909 # 模板名称
 spring:

@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/itcast-springboot/itcast-springboot.iml" filepath="$PROJECT_DIR$/itcast-springboot/itcast-springboot.iml" />
       <module fileurl="file://$PROJECT_DIR$/itcast-user/itcast-user.iml" filepath="$PROJECT_DIR$/itcast-user/itcast-user.iml" />
       <module fileurl="file://$PROJECT_DIR$/itcast-zuul/itcast-zuul.iml" filepath="$PROJECT_DIR$/itcast-zuul/itcast-zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nginx-test/nginx-test.iml" filepath="$PROJECT_DIR$/nginx-test/nginx-test.iml" />
     </modules>
   </component>
 </project>

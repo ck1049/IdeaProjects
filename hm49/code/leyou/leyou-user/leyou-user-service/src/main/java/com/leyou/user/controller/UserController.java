@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @GetMapping("query")
-    public ResponseEntity<User> queryUser(String username, String password){
+    public ResponseEntity<User> queryUser(@RequestParam("username") String username, @RequestParam("password") String password){
         User user = this.userService.queryUser(username, password);
         if (user == null){
             return ResponseEntity.badRequest().build();

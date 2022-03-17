@@ -11,6 +11,7 @@
         <module name="itcast-service-provider" />
         <module name="itcast-user" />
         <module name="itcast-eureka" />
+        <module name="nginx-test" />
         <module name="itcast-springboot" />
         <module name="itcast-zuul" />
         <module name="itcast-elasticsearch" />
@@ -25,6 +26,7 @@
       <module name="itcast-springboot" target="1.8" />
       <module name="itcast-user" target="1.8" />
       <module name="itcast-zuul" target="1.8" />
+      <module name="nginx-test" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

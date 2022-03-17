@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/itcast-zuul/pom.xml" />
         <option value="$PROJECT_DIR$/itcast-elasticsearch/pom.xml" />
         <option value="$PROJECT_DIR$/itcasat-sms/pom.xml" />
+        <option value="$PROJECT_DIR$/nginx-test/pom.xml" />
       </list>
     </option>
   </component>

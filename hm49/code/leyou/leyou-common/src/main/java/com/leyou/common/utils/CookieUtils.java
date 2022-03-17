@@ -3,6 +3,9 @@ package com.leyou.common.utils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpCookie;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.util.MultiValueMap;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -28,6 +35,10 @@ public final class CookieUtils {
 	 * @return
 	 */
 	public static String getCookieValue(HttpServletRequest request, String cookieName) {
+		return getCookieValue(request, cookieName, false);
+	}
+
+	public static String getCookieValue(ServerHttpRequest request, String cookieName) {
 		return getCookieValue(request, cookieName, false);
 	}
 
@@ -54,6 +65,24 @@ public final class CookieUtils {
 					}
 					break;
 				}
+			}
+		} catch (UnsupportedEncodingException e) {
+			logger.error("Cookie Decode Error.", e);
+		}
+		return retValue;
+	}
+
+	public static String getCookieValue(ServerHttpRequest request, String cookieName, boolean isDecoder) {
+		MultiValueMap<String, HttpCookie> cookies = request.getCookies();
+		if (cookies.isEmpty() || cookieName == null){
+			return null;
+		}
+		String retValue = null;
+		try {
+			if (isDecoder) {
+				retValue = URLDecoder.decode(cookies.get(cookieName).toString(), "UTF-8");
+			} else {
+				retValue = cookies.get(cookieName).toString();
 			}
 		} catch (UnsupportedEncodingException e) {
 			logger.error("Cookie Decode Error.", e);
