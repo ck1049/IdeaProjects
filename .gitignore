@@ -1,3 +1,4 @@
 target
 /hm49/code/leyou/leyou-common/target/classes
 tmp
+/hm49/code/leyou/leyou-sms/src/main/resources/application.yml
