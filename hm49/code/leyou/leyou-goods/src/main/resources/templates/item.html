@@ -636,9 +636,19 @@
 				}
 			},
 			addCart(){
-				ly.http.get("/auth/verify").then(res => {
+				ly.verify().then(res => {
 					// 已登录
-					console.log("已登录");
+					let carts = ly.store.get("LEYOU_CARTS");
+					if (carts){
+						ly.http.post("cart/addCarts", carts).then(res => {
+							ly.store.del("LEYOU_CARTS");
+						});
+					}
+					ly.http.post("/cart",{skuId: this.sku.id, num: this.num}).then(res => {
+						window.location = "http://www.leyou.com/cart.html";
+					}).catch(() => {
+						console.log("购物车添加失败!");
+					});
 				}).catch(() => {
 					// 未登录
 					let carts = ly.store.get("LEYOU_CARTS") || [];

@@ -56,6 +56,12 @@ spring:
           filters:
             - StripPrefix=1
             - PreserveHostHeader
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - StripPrefix=1
 eureka:
   client:
     service-url:
@@ -64,7 +70,7 @@ eureka:
 leyou:
   jwt:
     pubKeyPath: D:\\IdeaProjects\\hm49\\tmp\\rsa\\rsa.pub # 公钥地址
-    cookieName: LEYOU_TOEKN
+    cookieName: LEYOU_TOKEN
   filter:
     allowPaths:
       - /search

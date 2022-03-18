@@ -1,5 +1,5 @@
 server:
-  port: 8086
+  port: 8087
 spring:
   application:
     name: auth-service
@@ -17,4 +17,4 @@ leyou:
     pubKeyPath: D:\\IdeaProjects\\hm49\\tmp\\rsa\\rsa.pub # 公钥地址
     priKeyPath: D:\\IdeaProjects\\hm49\\tmp\\rsa\\rsa.pri # 私钥地址
     expire: 30 # 过期时间,单位分钟
-    cookieName: LEYOU_TOEKN
+    cookieName: LEYOU_TOKEN

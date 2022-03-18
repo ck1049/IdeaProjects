@@ -42,7 +42,7 @@ public class AuthController {
 
     @GetMapping("verify")
     public ResponseEntity<UserInfo> verify(
-            @CookieValue(value = "LEYOU_TOEKN", required = false) String token,
+            @CookieValue(value = "LEYOU_TOKEN", required = false) String token,
             HttpServletRequest request,
             HttpServletResponse response
             ){
@@ -54,7 +54,7 @@ public class AuthController {
             // 刷新token有效期
             token = JwtUtils.generateToken(userInfo, jwtproperties.getPrivateKey(), jwtproperties.getExpire());
             // 刷新cookie有效期
-            CookieUtils.setCookie(request, response, token, jwtproperties.getCookieName(), jwtproperties.getExpire() * 60);
+            CookieUtils.setCookie(request, response, jwtproperties.getCookieName(), token, jwtproperties.getExpire() * 60);
             return ResponseEntity.ok(userInfo);
         } catch (Exception e) {
             e.printStackTrace();

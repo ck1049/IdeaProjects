@@ -66,7 +66,7 @@
                                 </li>
                                 <li class="yui3-u-1-8"><span style="line-height:70px " class="sum">{{ly.formatPrice(cart.price * cart.num)}}</span></li>
                                 <li class="yui3-u-1-8">
-                                    <a href="#none">删除</a><br />
+                                    <a href="javascript:void(0)" @click="delCart(index)">删除</a><br />
                                     <a href="#none">移到我的关注</a>
                                 </li>
                             </ul>
@@ -92,7 +92,7 @@
                         <span><em>已节省：</em><i>-¥20.00</i></span>
                     </div>
                     <div class="sumbtn">
-                        <a class="sum-btn"  href="getOrderInfo.html"  target="_blank">结算</a>
+                        <a class="sum-btn"  href="javascript:void(0)" @click="submit()">结算</a>
                     </div>
                 </div>
             </div>
@@ -281,6 +281,21 @@
         created(){
             ly.verify().then(res => {
                 // 已登录
+                let carts = ly.store.get("LEYOU_CARTS");
+                if (carts){
+                    ly.http.post("cart/addCarts", carts).then(res => {
+                        ly.store.del("LEYOU_CARTS");
+                    });
+                    window.location = window.location;
+                }
+                ly.http.get("cart").then(({data}) => {
+                        this.carts = data;
+                        this.selected = data;
+                    }
+                ).catch(() =>  {
+                    this.carts = [];
+                    this.selected = [];
+                });
             }).catch(() => {
                 // 未登录
                 this.carts = ly.store.get("LEYOU_CARTS") || [];
@@ -292,6 +307,7 @@
                 cart.num++;
                 ly.verify().then(res => {
                     // 已登录
+                    ly.http.put("cart", {skuId: cart.skuId, num: cart.num});
                 }).catch(() => {
                     // 未登录
                     ly.store.set("LEYOU_CARTS", this.carts);
@@ -303,9 +319,31 @@
                 }
                 ly.verify().then(res => {
                     // 已登录
+                    ly.http.put("cart", {skuId: cart.skuId, num: cart.num});
                 }).catch(() => {
                     // 未登录
                     ly.store.set("LEYOU_CARTS", this.carts);
+                });
+            },
+            delCart(index){
+                ly.verify().then(res => {
+                    // 已登录
+                    ly.http.delete("cart/" + this.carts[index].skuId).then(res => {
+                        this.carts.splice(index, 1);
+                    });
+                }).catch(() => {
+                    // 未登录
+                    this.carts.splice(index, 1);
+                });
+            },
+            submit(){
+                ly.verify().then(res => {
+                    // 已登录
+                    ly.store.set("LEYOU_ORDER", this.selected);
+                    window.location = "http://www.leyou.com/getOrderInfo.html";
+                }).catch(() => {
+                    // 未登录
+                    window.location = "http://www.leyou.com/login.html?returnUrl=http://www.leyou.com/cart.html";
                 });
             }
         },

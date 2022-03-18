@@ -201,4 +201,7 @@ public class GoodsService {
         }
     }
 
+    public Sku querySkuBySkuId(Long skuId) {
+        return this.skuMapper.selectByPrimaryKey(skuId);
+    }
 }

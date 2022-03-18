@@ -80,9 +80,9 @@ public final class CookieUtils {
 		String retValue = null;
 		try {
 			if (isDecoder) {
-				retValue = URLDecoder.decode(cookies.get(cookieName).toString(), "UTF-8");
+				retValue = URLDecoder.decode(cookies.get(cookieName).get(0).getValue(), "UTF-8");
 			} else {
-				retValue = cookies.get(cookieName).toString();
+				retValue = cookies.get(cookieName).get(0).getValue();
 			}
 		} catch (UnsupportedEncodingException e) {
 			logger.error("Cookie Decode Error.", e);
